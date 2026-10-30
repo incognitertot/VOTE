@@ -1,7 +1,7 @@
 
 <!DOCTYPE HTML>
 <head>
-  <title>Welcome</title>
+  <title>VOTE</title>
   <style>
     body { margin: 0; padding: 0; background-color: #1b93c2; }
     
@@ -76,6 +76,59 @@
     document.querySelectorAll('.vote-btn').forEach(b => b.disabled = true);
   }
 </script>
+
+<img src="https://yt3.ggpht.com/eIGkzoVKMU1QF5GlDpcnABQ4XCr1BtHt8G8IZMBJrQai4ArttlLxZwZ0_8BEduewwTKRA-VybA=w1060-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj" class="banner-img">
+
+                                                                                                                                                                                                                                                                                         
+
+<div class="poll-wrapper">
+  <div id="result-header">ANSWER IS CANDY BOX</div>
+  <h2>GUESS WHAT MY FIRST GAME IS BASED ON</h2>
+  
+  <div class="options-flex">
+    <button class="vote-btn" onclick="handleVote('candy box')">
+      <div class="fill-bar" id="candy box-bar"></div>
+      <span class="label-text">candy box</span>
+      <span class="pct-text" id="candy box-pct"></span>
+    </button>
+    
+    <button class="vote-btn" onclick="handleVote('Cookie Clicker')">
+      <div class="fill-bar" id="candy box-bar"></div>
+      <span class="label-text">Candy Box</span>
+      <span class="pct-text" id="candy box-pct"></span>
+    </button>
+  </div>
+</div>
+
+<script>
+  let votes = { candy box: 90, cookie clicker: 10 };
+
+  function handleVote(choice) {
+    votes[choice]++;
+    const total = votes.candy box + votes.cookie clicker;
+    
+    document.getElementById('result-header').style.visibility = 'visible';
+    
+    ['candy box', 'cookie clicker'].forEach(id => {
+      const pct = Math.round((votes[id] / total) * 100);
+      document.getElementById(id + '-bar').style.width = pct + '%';
+      const txt = document.getElementById(id + '-pct');
+      txt.innerText = pct + '%';
+      txt.style.display = 'inline';
+    });
+    
+    document.querySelectorAll('.vote-btn').forEach(b => b.disabled = true);
+  }
+</script>
+
+
+
+
+
+
+
+
+
 <p>Ill add more later</p>
 </body>
 </html>
