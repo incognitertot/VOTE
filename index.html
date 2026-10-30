@@ -1,0 +1,81 @@
+
+<!DOCTYPE HTML>
+<head>
+  <title>Welcome</title>
+  <style>
+    body { margin: 0; padding: 0; background-color: #1b93c2; }
+    
+    .banner-img { width: 100%; display: block; height: auto; }
+    
+    h1 { text-align: center; font-family: sans-serif; margin-top: 30px; color: #2d4a53; }
+
+    .poll-wrapper { text-align: center; font-family: sans-serif; margin-top: 50px; }
+    
+    #result-header { visibility: hidden; font-weight: bold; color: #2d4a53; margin-bottom: 5px; letter-spacing: 1px; }
+    
+    .options-flex { display: flex; gap: 20px; justify-content: center; margin-top: 20px; }
+    
+    .vote-btn { 
+      position: relative; width: 150px; height: 50px; background: white; 
+      border: 2px solid #2d4a53; box-shadow: 4px 4px 0px #2d4a53; 
+      cursor: pointer; font-weight: bold; overflow: hidden;
+      transition: transform 0.05s;
+    }
+    
+    .vote-btn:active:not(:disabled) { transform: translate(2px, 2px); box-shadow: 2px 2px 0px #2d4a53; }
+
+    .fill-bar { position: absolute; top:0; left:0; height:100%; width:0%; background: #e1edf0; z-index: 1; transition: width 0.6s ease-out; }
+    
+    .label-text, .pct-text { position: relative; z-index: 2; color: #2d4a53; }
+    
+    .pct-text { display: none; margin-left: 5px; }
+  </style>
+</head>
+<body>
+
+<img src="https://yt3.ggpht.com/eIGkzoVKMU1QF5GlDpcnABQ4XCr1BtHt8G8IZMBJrQai4ArttlLxZwZ0_8BEduewwTKRA-VybA=w1060-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj" class="banner-img">
+
+<h1>BEFORE YOU CONTINUE</h1>                                                                                                                                                                                                                                                                                         
+
+<div class="poll-wrapper">
+  <div id="result-header">THE ANSWER IS</div>
+  <h2>Am I the best?</h2>
+  
+  <div class="options-flex">
+    <button class="vote-btn" onclick="handleVote('yes')">
+      <div class="fill-bar" id="yes-bar"></div>
+      <span class="label-text">Yes</span>
+      <span class="pct-text" id="yes-pct"></span>
+    </button>
+    
+    <button class="vote-btn" onclick="handleVote('no')">
+      <div class="fill-bar" id="no-bar"></div>
+      <span class="label-text">No</span>
+      <span class="pct-text" id="no-pct"></span>
+    </button>
+  </div>
+</div>
+
+<script>
+  let votes = { yes: 90, no: 10 };
+
+  function handleVote(choice) {
+    votes[choice]++;
+    const total = votes.yes + votes.no;
+    
+    document.getElementById('result-header').style.visibility = 'visible';
+    
+    ['yes', 'no'].forEach(id => {
+      const pct = Math.round((votes[id] / total) * 100);
+      document.getElementById(id + '-bar').style.width = pct + '%';
+      const txt = document.getElementById(id + '-pct');
+      txt.innerText = pct + '%';
+      txt.style.display = 'inline';
+    });
+    
+    document.querySelectorAll('.vote-btn').forEach(b => b.disabled = true);
+  }
+</script>
+<p>Ill add more later</p>
+</body>
+</html>
